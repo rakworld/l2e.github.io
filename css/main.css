@@ -178,7 +178,8 @@ main { position: relative; }
 .hero { min-height: calc(100vh - 24px); padding: 36px 0 100px; display: flex; align-items: center; }
 .hero-grid, .page-hero-grid { display: grid; grid-template-columns: 1.08fr 0.92fr; gap: 36px; align-items: center; }
 .hero-copy, .page-hero-copy { position: relative; z-index: 2; }
-.hero-copy h1, .page-hero-copy h1 { font-size: clamp(3.35rem, 8vw, 6.6rem); max-width: 780px; }
+.hero-copy h1 { font-size: clamp(3.35rem, 8vw, 6.6rem); max-width: 780px; }
+.page-hero-copy h1 { font-size: clamp(2.5rem, 5vw, 4.2rem); max-width: 620px; }
 .hero-copy p, .page-hero-copy p { max-width: 680px; margin-top: 22px; font-size: 1.08rem; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 32px; }
 .hero-metrics, .metrics-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 36px; }
@@ -223,7 +224,7 @@ main { position: relative; }
   filter: blur(32px);
 }
 .floating-stack { position: absolute; inset: 30px; display: grid; align-content: space-between; z-index: 2; pointer-events: none; }
-.floating-row { display: flex; justify-content: space-between; gap: 18px; }
+.floating-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 14px; }
 .float-card, .float-pill {
   pointer-events: auto;
   backdrop-filter: blur(18px);
@@ -231,10 +232,11 @@ main { position: relative; }
   background: rgba(15, 24, 43, 0.62);
   box-shadow: var(--shadow);
 }
-.float-card { width: min(240px, 46%); padding: 18px; border-radius: 20px; }
+.float-card { width: min(210px, 42%); padding: 16px; border-radius: 20px; }
 .float-card h3, .service-card h3, .portfolio-card h3, .blog-card h3, .job-card h3 { margin: 0 0 8px; font-size: 1.08rem; }
 .float-card p, .service-card p, .portfolio-card p, .blog-card p, .job-card p, .contact-card p, .architecture-node p, .feature-panel p, .industry-card p, .testimonial-card p { margin: 0; color: var(--muted); }
-.float-pill { display: inline-flex; gap: 10px; align-items: center; padding: 14px 18px; border-radius: 999px; }
+.float-pill { display: inline-flex; gap: 10px; align-items: center; max-width: 230px; padding: 14px 18px; border-radius: 999px; }
+.float-pill span { color: var(--muted); font-size: 0.92rem; }
 .float-pill strong { font-size: 0.92rem; }
 .grid-2, .grid-3, .grid-4, .cards-grid, .contact-grid, .insight-grid, .footer-grid { display: grid; gap: 24px; }
 .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -486,12 +488,47 @@ main { position: relative; }
   .hero { min-height: auto; padding-top: 24px; }
   .hero-metrics, .metrics-grid, .field-row, .grid-2, .grid-3, .cards-grid, .insight-grid, .grid-4, .stat-grid { grid-template-columns: 1fr; }
   .hero-visual { min-height: 540px; }
-  .floating-row { flex-direction: column; }
-  .float-card { width: 100%; }
+  .page-hero-copy h1 { font-size: clamp(2.1rem, 7vw, 3rem); }
+  .floating-stack { inset: 18px; }
+  .floating-row { gap: 10px; }
+  .float-card, .float-pill {
+    max-width: 160px;
+    padding: 12px 14px;
+    border-radius: 18px;
+  }
+  .float-card h3, .float-pill strong { font-size: 0.95rem; }
+  .float-card p, .float-pill span { font-size: 0.82rem; line-height: 1.45; }
   .testimonial-card { min-width: 100%; margin-right: 0; }
 }
 @media (max-width: 560px) {
   .section, .page-hero, .hero { padding-bottom: 72px; }
   .service-card, .feature-panel, .portfolio-card, .blog-card, .job-card, .contact-card, .industry-card, .testimonial-card, .stat-card, .architecture-node { padding: 22px; }
-  .hero-copy h1, .page-hero-copy h1 { font-size: clamp(2.8rem, 14vw, 4.5rem); }
+  .hero-copy h1 { font-size: clamp(2.8rem, 14vw, 4.5rem); }
+  .page-hero-copy h1 { font-size: clamp(2rem, 9vw, 2.8rem); }
+  .hero-visual { min-height: 480px; }
+  .floating-stack {
+    inset: auto 14px 14px;
+    align-content: end;
+    gap: 10px;
+  }
+  .floating-row {
+    justify-content: space-between;
+    gap: 10px;
+  }
+  .float-card, .float-pill {
+    max-width: calc(50% - 5px);
+    min-width: 0;
+    padding: 10px 12px;
+    backdrop-filter: blur(14px);
+  }
+  .float-card p, .float-pill span {
+    display: none;
+  }
+  .float-card h3, .float-pill strong {
+    margin: 0;
+    font-size: 0.86rem;
+    line-height: 1.3;
+  }
 }
+
+
