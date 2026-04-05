@@ -284,46 +284,90 @@ main { position: relative; }
 .architecture-grid { display: grid; grid-template-columns: 1fr 1.2fr 1fr; gap: 22px; align-items: center; }
 .architecture-column { display: grid; gap: 18px; }
 .architecture-core {
-  min-height: 440px;
+  min-height: 460px;
   position: relative;
-  padding: 24px;
+  padding: 32px;
   border-radius: 32px;
-  background: radial-gradient(circle at top, rgba(22, 177, 255, 0.16), transparent 38%), linear-gradient(180deg, rgba(16, 26, 48, 0.94), rgba(10, 16, 28, 0.95));
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 18%, rgba(22, 177, 255, 0.2), transparent 24%),
+    radial-gradient(circle at 50% 72%, rgba(29, 233, 128, 0.08), transparent 30%),
+    linear-gradient(180deg, rgba(16, 26, 48, 0.96), rgba(8, 14, 25, 0.98));
   border: 1px solid rgba(136, 184, 255, 0.16);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.03), var(--shadow);
 }
-.architecture-core::before, .architecture-core::after {
+.architecture-core::before,
+.architecture-core::after {
   content: "";
   position: absolute;
-  inset: 50% auto auto 50%;
-  width: 72%;
-  height: 1px;
-  background: linear-gradient(90deg, rgba(22, 177, 255, 0.35), transparent);
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+.architecture-core::before {
+  width: 320px;
+  height: 320px;
+  border: 1px solid rgba(22, 177, 255, 0.14);
+  box-shadow: 0 0 80px rgba(22, 177, 255, 0.08), inset 0 0 40px rgba(22, 177, 255, 0.05);
 }
 .architecture-core::after {
-  width: 1px;
-  height: 72%;
-  background: linear-gradient(180deg, rgba(29, 233, 128, 0.35), transparent);
+  width: 220px;
+  height: 220px;
+  background: radial-gradient(circle, rgba(22, 177, 255, 0.14), rgba(10, 18, 34, 0) 68%);
 }
 .core-halo {
   position: absolute;
-  inset: 20% 18%;
+  inset: 16% 14%;
   border-radius: 50%;
-  border: 1px solid rgba(126, 247, 211, 0.16);
-  box-shadow: inset 0 0 80px rgba(22, 177, 255, 0.09);
+  border: 1px solid rgba(126, 247, 211, 0.1);
+  opacity: 0.9;
 }
 .core-panel {
   position: absolute;
-  inset: 50%;
+  inset: 50% auto auto 50%;
   transform: translate(-50%, -50%);
-  width: 280px;
-  padding: 26px;
+  width: min(340px, calc(100% - 56px));
+  padding: 28px 26px 26px;
   text-align: center;
-  border-radius: 26px;
-  background: rgba(10, 18, 34, 0.88);
+  border-radius: 28px;
+  background:
+    linear-gradient(180deg, rgba(13, 22, 40, 0.96), rgba(9, 16, 29, 0.94));
   border: 1px solid rgba(126, 247, 211, 0.18);
+  box-shadow:
+    0 22px 60px rgba(0, 0, 0, 0.36),
+    inset 0 1px 0 rgba(255,255,255,0.05),
+    0 0 0 1px rgba(22, 177, 255, 0.06);
 }
-.core-panel h3 { margin: 0 0 10px; font-size: 1.5rem; }
-.core-panel p { margin: 0; color: var(--muted); }
+.core-panel::before {
+  content: "Core Orchestration Layer";
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 30px;
+  margin-bottom: 14px;
+  padding: 0 12px;
+  border-radius: 999px;
+  background: rgba(18, 33, 58, 0.92);
+  border: 1px solid rgba(126, 247, 211, 0.14);
+  color: var(--accent);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.core-panel h3 {
+  margin: 0 0 12px;
+  font-size: clamp(1.65rem, 3vw, 2rem);
+  font-family: "Outfit", sans-serif;
+  letter-spacing: -0.03em;
+}
+.core-panel p {
+  margin: 0;
+  color: #b7c7e5;
+  font-size: 1rem;
+  line-height: 1.75;
+}
 .architecture-node { padding: 22px; }
 .architecture-node h3 { margin: 0 0 8px; }
 .tech-board { display: grid; gap: 24px; }
@@ -459,7 +503,7 @@ main { position: relative; }
 .clip-hidden { overflow: hidden; }
 @media (max-width: 1100px) {
   .hero-grid, .page-hero-grid, .banner, .contact-grid, .architecture-grid, .footer-grid { grid-template-columns: 1fr; }
-  .architecture-core { min-height: 360px; }
+  .architecture-core { min-height: 400px; }
   .grid-4, .stat-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .grid-3, .cards-grid, .insight-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .testimonial-card { min-width: calc(50% - 12px); }
@@ -531,4 +575,56 @@ main { position: relative; }
   }
 }
 
+
+@media (max-width: 860px) {
+  .hero-visual-home .floating-stack {
+    inset: auto 18px 18px;
+    align-content: end;
+    gap: 10px;
+  }
+
+  .hero-visual-home .floating-row {
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  .hero-visual-home .float-card,
+  .hero-visual-home .float-pill {
+    max-width: 150px;
+  }
+}
+
+@media (max-width: 560px) {
+  .hero-visual-home .floating-stack {
+    inset: auto 12px 12px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .hero-visual-home .floating-row {
+    display: contents;
+  }
+
+  .hero-visual-home .float-card,
+  .hero-visual-home .float-pill {
+    max-width: none;
+    width: 100%;
+    min-height: 48px;
+    justify-content: center;
+    text-align: center;
+    background: rgba(11, 20, 36, 0.78);
+  }
+
+  .hero-visual-home .float-card p,
+  .hero-visual-home .float-pill span {
+    display: none;
+  }
+
+  .hero-visual-home .float-card h3,
+  .hero-visual-home .float-pill strong {
+    margin: 0;
+    font-size: 0.8rem;
+    line-height: 1.2;
+  }
+}
 
